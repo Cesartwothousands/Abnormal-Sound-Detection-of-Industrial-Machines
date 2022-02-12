@@ -1,5 +1,5 @@
 # Industrial-Machine-Investigation-and-Inspection
-Related work of my graduation project.
+Related work of my NUIST graduation project.
 
 
 
