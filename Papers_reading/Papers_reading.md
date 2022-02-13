@@ -29,5 +29,5 @@ In this paper, we present a new dataset of industrial machine sounds that we cal
 
 ## 2. 机器学习基础---无监督学习之异常检测
 
-> https://www.cnblogs.com/ssyfj/p/12940077.html 
+> [2] https://www.cnblogs.com/ssyfj/p/12940077.html 
 
