@@ -25,7 +25,7 @@ In this paper, we present a new dataset of industrial machine sounds that we cal
 
 ###  Content
 
-![image-20220212174914246](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\dataset content.png)
+![image-20220212174914246](https://github.com/Cesartwothousands/Industrial-Machine-Investigation-and-Inspection/blob/main/Papers_reading/dataset%20content.png)
 
 ## 2. 机器学习基础---无监督学习之异常检测
 
