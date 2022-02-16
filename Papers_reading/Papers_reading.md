@@ -125,6 +125,16 @@ Challenges:
 The proposed methods are trained and evaluated using the real sound dataset provided by the factory. The experiment results show
 a good classication accuracy of 80.25 percent when using Mel spectrogram and scalogram images. The results promise signicant potential for using in the fault diagnosis support system based on the sounds of drilling machines.
 
+### Other papers
+
+SVM & ANN: [2]  
+
+Kumar et al. [3] developed a system for automatic drilling operations using vibration signals. The authors used low pass Butterworth filter to preprocess vibration signals before extracting eight features from the time domain, eight features from the frequency domain, and five Morlet wavelet features.
+
+Mel & SVM: Lee et al. [4] extracted Mel-frequency cepstrum coefficients (MFCCs) from the audio signals and also employed SVM for classification. The accuracy reached 94.1 percent on their dataset, which is collected from an NS-AM-type railway point machine at Sehwa Company in Daejeon, South Korea. The length of each sound on their dataset was around 5000 ms.
+
+Covoluted Neural Network: 
+
 ## 8. 
 
 > [8] 
