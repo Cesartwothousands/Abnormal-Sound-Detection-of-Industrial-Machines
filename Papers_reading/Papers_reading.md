@@ -127,13 +127,53 @@ a good classication accuracy of 80.25 percent when using Mel spectrogram and sc
 
 ### Other papers
 
-SVM & ANN: [2]  
+#### SVM & ANN
+
+[2]  
 
 Kumar et al. [3] developed a system for automatic drilling operations using vibration signals. The authors used low pass Butterworth filter to preprocess vibration signals before extracting eight features from the time domain, eight features from the frequency domain, and five Morlet wavelet features.
 
-Mel & SVM: Lee et al. [4] extracted Mel-frequency cepstrum coefficients (MFCCs) from the audio signals and also employed SVM for classification. The accuracy reached 94.1 percent on their dataset, which is collected from an NS-AM-type railway point machine at Sehwa Company in Daejeon, South Korea. The length of each sound on their dataset was around 5000 ms.
+#### Mel & SVM
 
-Covoluted Neural Network: 
+Lee et al. [4] extracted Mel-frequency cepstrum coefficients (MFCCs) from the audio signals and also employed SVM for classification. The accuracy reached 94.1 percent on their dataset, which is collected from an NS-AM-type railway point machine at Sehwa Company in Daejeon, South Korea. The length of each sound on their dataset was around 5000 ms.
+
+##### 问题
+
+However, their method did not show a promising result when applied in our drill sound dataset because each sound recording is extremely short.
+
+Kemalkar and Bairagi [5] extracted **MFCCs features** and made a comparison between these features and a library of features to decide on the **fault or non-fault state** of a bike engine. 
+
+Zhang [6] used the principal component analysis (**PCA**) algorithm to extract and train the training samples. 
+
+自组织映射(Self-organizing Maps,SOM)
+
+Then, the author used self-organizing maps (**SOM**) to cluster the principal component by neural network clustering into four categories and the Bayesian discriminant method to identify the testing samples. The dataset for his experiment was collected by a self-developed drilling test rig using a signal acquisition hardware system (sensors, data acquisition cards, and industrial computers)
+
+#### Covoluted Neural Network 
+
+Ince et al. [7] proposed using a time-domain signal as the input of a small 1-D CNN to classify motors as either healthy or faulty. The authors used a balanced dataset of 260 healthy and 260 faulty cases for training a 1-D CNN model. 
+
+Luo et al. [8] detected the fault stage of CNC machine tools based on their vibration signals. The authors used 10 000 samples; 9000 of these were used for training and 1000 were used for testing a deep auto-encoder (DAE) model. The DAE model, which is combined between the SAE layer and the BPNN layer, is used to classify impulse and non-impulse responses. A dynamics identification algorithm was then used to identify dynamic properties from impulse responses. 
+
+Finally, similarities between the dynamic properties were used to detect the health of the CNC machine tool. Similarly, Long et al. [9] combined a sparse autoencoder (SAE) and an echo state network (ESN) to diagnose the transmission faults of delta 3-D printers. These authors collected attitude data from an attitude sensor and used SAE to extracted features from attitude data. Then these features were used as the input of an ESN for fault recognition. Long et al. [10] alsocombined a hybrid evolutionary algorithm featuring a competitive swarm optimizer and a local search to optimize parameter values and hyperparameter settings of echo state network for intelligent fault diagnosis. To test the performance of their proposed method, the authors conducted fault diagnosis experiments for a 3-D printer and a gearbox
+
+Many recent studies gained remarkable results when using image representation of the sound signal to train state-of-the-art deep learning architectures such as convolutional neural networks (CNNs) on machine fault sound diagnosis [12]–[15].
+
+###### CNN的问题
+
+然而，绝大多数研究都是使用大型和平衡的数据集进行的。实际上，与钻机的正常工作声音相比，钻头断裂时记录的声音仅占整个数据集的一小部分。不平衡的现实世界数据集导致训练CNN架构的偏见;例如，CNN 模型可能对少数族裔类的预测很差，因为该类的数据较少。此外，由于我们现实世界数据集中的每个声音样本都太短，约为20.83 ms和41.67 ms，因此从原始声音信号中提取的特征不能携带太多重要的信息进行分类。与以前的研究相比，这导致钻声分类的难度更大。据我们所知，没有使用如此短的钻孔声音进行过研究。因此，使用端到端系统（仅使用传统的机器学习或先进的卷积机器学习架构）并不能满足行业领域声音分类的预期准确性。为了解决钻断声音检测的问题，需要一个由多层组成的架构（预处理、图像转换、特征提取、特征选择、分类）。对于每一层，可以使用包含深度学习架构和机器学习方法的不同算法。传统方法（包括多个步骤/层）的局限性在于，每个步骤都需要在不同的标准下单独优化。但是，在不同的标准下单独优化每个步骤，而不是丢失区分性信息，可以帮助提高每个步骤和整个系统的性能。
+
+#### Overfitting
+
+To overcome overfitting with the small dataset, we decided to extract features from the image representations of sounds (Mel spectrogram and scalogram images) and choose the conventional classification models for the classification task. The detail of our proposed methods is presented in the next section.
+
+The number of features extracted from Mel spectrogram images is 25 088. To reduce the unnecessary features, neighborhood component analysis (NCA) [6] was utilized for selecting the most relevant information for classification. Minimizing the redundancy of extracted features from VGG19 can help the model train faster and more effectively. We used classifiers provided in the Matlab toolbox to classify drill sounds using the extracted features from images.
+
+提取了25088特征，还用NCA做了有优化
+
+#### Conclusion
+
+在这项研究中，我们提出了一种用于钻音分类的新方法，该方法包括使用声音的图像表示（Mel频谱图和标尺图）并根据深度学习CNN从这些图像中提取特征。我们还利用NCA来减少CNN的提取特征的数量，然后再将其输入到机器学习分类器中。我们提出的方法在标度图和Mel三维频谱图图像上实现了80.25%。所获得的结果在行业早期故障钻探检测方面具有可喜性。在比较研究中，我们比较了两个时频分析（Mel三维图和标尺），当使用这些图像作为我们提出的方法的输入时。使用带有COI的凸块小波获得的显像图图像有助于提高我们程序的性能。此外，我们还尝试了传统方法（使用音高和13个MFCC特征作为KNN分类器的输入对钻孔声音进行分类）和数据集上最先进的深度卷积神经网络进行比较。实验结果证明了使用钻孔声音的图像表示对钻孔声音进行分类的鲁棒性，无论是使用CNN架构（如GoogLeNet）作为分类器还是使用我们提出的程序。
 
 ## 8. 
 
