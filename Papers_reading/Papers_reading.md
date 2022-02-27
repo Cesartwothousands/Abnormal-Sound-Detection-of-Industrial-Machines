@@ -223,9 +223,9 @@ The number of features extracted from Mel spectrogram images is 25 088. To reduc
 
 本文研究了放顶煤声信号的特征提取方法,对 比了主流机器学习算法的分类表现,得出以下 结论: (1) 不同帧长的样本选取会对煤矸分类的准 确率 产 生 影 响。 选 择 帧 长 为 200 ms、 帧 移 为 100 ms 时,基于时域特征提取与时频域特征提取 的分类准确率最高,分别为 91. 60% 与 93. 35% 。 (2) 不同的特征选择适用于不同的算法模型。 本文的时频域特征提取方法适用于 RF、KNN 与 MLP 分类器,煤矸分类准确率分别为 93. 06% 、 90. 05% 、91. 02% 。 相比于时域特征和频域特征, 时频域特征能提高分类准确率。 (3) 对于时频域特征向量,降维有助于提升分 类准确率。 RF、KNN、DT、MLP 4 种模型的分类准 确率分别提升了 1. 45% 、0. 29% 、2. 40% 、0. 91% , 其中 RF 分类模型准确率最高,为 94. 51% ,对应的 时频域特征向量维度为 20。 (4) RF、KNN、DT、MLP 在获得较高分类准确 率的同时,模型大小分别为 6. 60 MB、6. 98 MB、 0. 05 MB 和 0. 01 MB。 综合考虑分类准确率与模 型大小,MLP 模型更具备低功耗平台的适用性。
 
-## 9.
+## 9.基于呼吸声特征分析的肺部疾病诊断方法研究
 
-
+> [9] 常峥. 基于呼吸声特征分析的肺部疾病诊断方法研究[D].重庆邮电大学,2021.DOI:10.27675/d.cnki.gcydx.2021.000285.
 
 针对目前呼吸声信号识别率低的问题，提出了一种基于希尔伯特黄变换
 (Hilbert-Huang  Transform,  HHT) 的 梅 尔 频 率 倒 谱 系 数 (Mel-Frequency  Cepstral 
@@ -234,3 +234,93 @@ Coefficients,  MFCC)与短时能量(Energy)融合的特征提取算法 HHT-MFCC+
 谱能量通过梅尔(Mel)滤波器得到特征向量，再对特征向量取对数和离散余弦变换
 (Discrete  Cosine  Transform,  DCT)求出 HHT-MFCC 特征；最后，计算出呼吸声信号
 的短时能量特征并与 HHT-MFCC 特征融合便可得到新特征融合算法。
+
+ ### 结果
+
+通过采集相关疾病的呼吸声信号并利用实验平台验证所提算法的有效性，利用
+支持向量机(Support  Vector  Machine,  SVM)构建决策二叉树分类法中的偏二叉树分
+类模型。实验结果表明，所提算法能有效识别健康、慢性阻塞性肺病以及肺炎呼吸
+声信号，精确率(Precision)和召回率(Recall)均在0.920以上，准确率(Accuracy)为 0.942，
+基本实现利用呼吸声信号诊断肺部疾病的目标。 
+
+### 1.3.3  声音信号特征提取技术研究现状  
+
+Page6
+
+### 第 2 章
+
+为 Hilbert-Huang 变换与呼吸声信号处理方法理论基础。介绍了希尔伯特
+黄变换以及呼吸声信号的降噪方法和特征提取方法并对比了各方法的优缺点，确定
+了本文在信号处理过程中预处理和特征提取环节的研究方法且阐述了诊断肺部疾病
+大致流程。
+
+## 10.卷积神经网络（CNN）在语音识别中的应用
+
+> [10] https://www.cnblogs.com/jins-note/p/9897191.html
+
+长短时记忆网络（LSTM，LongShort Term Memory）可以说是目前语音识别应用最广泛的一种结构，这种网络能够对语音的长时相关性进行建模，从而提高识别正确率。双向LSTM网络可以获得更好的性能，但同时也存在训练复杂度高、解码时延高的问题，尤其在工业界的实时识别系统中很难应用。
+
+### 1 语音识别为什么要用CNN
+
+通常情况下，语音识别都是基于时频分析后的语音谱完成的，而其中语音时频谱是具有结构特点的。要想提高语音识别率，就是需要克服语音信号所面临各种各样的多样性，包括说话人的多样性(说话人自身、以及说话人间)，环境的多样性等。一个卷积神经网络提供在时间和空间上的平移不变性卷积，将卷积神经网络的思想应用到语音识别的声学建模中，则可以利用卷积的不变性来克服语音信号本身的多样性。从这个角度来看，则可以认为是将整个语音信号分析得到的时频谱当作一张图像一样来处理，采用图像中广泛应用的深层卷积网络对其进行识别。
+
+从实用性上考虑，CNN也比较容易实现大规模并行化运算。虽然在CNN卷积运算中涉及到很多小矩阵操作，运算很慢。不过对CNN的加速运算相对比较成熟，如Chellapilla等人提出一种技术可以把所有这些小矩阵转换成一个大矩阵的乘积。一些通用框架如Tensorflow，caffe等也提供CNN的并行化加速，为CNN在语音识别中的尝试提供了可能。
+
+### 2 CLDNN
+
+提到CNN在语音识别中的应用，就不得不提CLDNN（CONVOLUTIONAL, LONG SHORT-TERM MEMORY,FULLY CONNECTED DEEP NEURAL NETWORKS）[1]，在CLDNN中有两层CNN的应用，算是浅层CNN应用的代表。CNN 和 LSTM 在语音识别任务中可以获得比DNN更好的性能提升，对建模能力来说，CNN擅长减小频域变化，LSTM可以提供长时记忆，所以在时域上有着广泛应用，而DNN适合将特征映射到独立空间。而在CLDNN中，作者将CNN，LSTM和DNN串起来融合到一个网络中，获得比单独网络更好的性能。
+
+CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN来减小频域变化，CNN的输出灌入几层LSTM来减小时域变化，LSTM最后一层的输出输入到全连接DNN层，目的是将特征空间映射到更容易分类的输出层。之前也有将CNN LSTM和DNN融合在一起的尝试，不过一般是三个网络分别训练，最后再通过融合层融合在一起，而CLDNN是将三个网络同时训练。实验证明，如果LSTM输入更好的特征其性能将得到提高，受到启发，作者用CNN来减小频域上的变化使LSTM输入自适应性更强的特征，加入DNN增加隐层和输出层之间的深度获得更强的预测能力。
+
+### LSTM
+
+### 各企业发展
+
+### 4.总结
+
+由于CNN本身卷积在频域上的平移不变性，同时VGG、残差网络等深度CNN网络的提出，给CNN带了新的新的发展，使CNN成为近两年语音识别最火的方向之一。用法也从最初的2-3层浅层网络发展到10层以上的深层网络，从HMM-CNN框架到端到端CTC框架，各个公司也在deep CNN的应用上取得了令人瞩目的成绩。
+
+总结一下，CNN发展的趋势大体为：
+
+1 更加深和复杂的网络，CNN一般作为网络的前几层，可以理解为用CNN提取特征，后面接LSTM或DNN。同时结合多种机制，如attention model、ResNet 的技术等。
+
+2 End to End的识别系统，采用端到端技术CTC ， LFR 等。
+
+3 粗粒度的建模单元，趋势为从state到phone到character，建模单元越来越大。
+
+但CNN也有局限性，[2,3]研究表明，卷积神经网络在训练集或者数据差异性较小的任务上帮助最大，对于其他大多数任务，相对词错误率的下降一般只在2%到3%的范围内。不管怎么说，CNN作为语音识别重要的分支之一，都有着极大的研究价值。
+
+### 参考文献：
+
+>  [ 1 ] Sainath,T.N, Vinyals, O., Senior, O.,Sak H:CONVOLUTIONAL, LONG SHORT-TERM MEMORY, FULLY CONNECTED DEEP NEURAL NETWORKS
+>  [ 2 ] Sainath,T.N , Mohamed,A.r , Kingsbury ,B., Ramabhadran,B.:DEEP CONVOLUTIONAL NEURAL NETWORKS FOR LVCSR.In:Proc. International Conference on Acoustics, Speech and signal Processing(ICASSP),pp.8614-8618(2013)
+>  [ 3 ] Deng, L.,Abdel-Hamid,O.,Yu,D.:A DEEP CONVOLUTIONAL NEURAL NETWORK USING HETEROGENEOUS POOLING FOR TRADING ACOUSTIC INVARIANCE WITH PHONETIC CONFUSION.In:Proc. International Conference on Acoustics, Speech and signal Processing(ICASSP),pp.6669-6673(2013)
+>  [ 4 ] Chellapilla, K.,Puri, S., Simard,P.:High Performance Convolutional Neural Networks for Document Processing.In: Tenth International Workshop on Frontiers in Handwriting Recognition(2006)
+>  [ 5 ]Zhang, Y., Chan ,W., Jaitly, N.:VERY DEEP CONVOLUTIONAL NETWORKS FOR END-TO-END SPEECH RECOGNITION.In:Proc. International Conference on Acoustics, Speech and signal Processing(ICASSP 2017)
+
+## 11.如何使用卷积神经网络从梅尔谱图检测 COVID-19 咳嗽
+
+>[11] https://blog.csdn.net/woshicver/article/details/120387103
+
+### 什么是梅尔谱图？
+
+梅尔谱图是转换为梅尔标度的谱图。那么，什么是[频谱](https://so.csdn.net/so/search?q=频谱&spm=1001.2101.3001.7020)图和梅尔音阶？频谱图是信号频谱的可视化，其中信号的频谱是信号包含的频率范围。梅尔音阶模仿人耳的工作方式，研究表明人类不会在线性音阶上感知频率。与较高频率相比，人类更擅长检测较低频率的差异。
+
+![c864166c1342825345afb20004046c1c.png](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\Mel)
+
+### 数据集条件
+
+使用的语音数据可以在https://github.com/virufy/virufy-data下载。
+
+使用的声音数据是 COVID-19 阳性和 COVID-19 阴性的咳嗽声音记录。此数据为 mp3 格式，具有采样率为 48000 Hz 的单声道，并已进行分段以使其具有相同的时间。
+
+但是，系统可以使用这些数据来识别感染 COVID-19 的人的咳嗽声吗？mp3音频格式需要转换成wav格式。为什么？因为语音识别中处理的是频率波和幅度波，而wav是波（waveform）形式的音频格式。因此，需要对音频进行预处理以将格式从mp3 更改为wav 格式。完成这一步后，就可以得到光谱图mel。
+
+从音频中获取图像梅尔频谱图
+软件 Audacity 可用于将 mp3 音频格式转换为 wav 格式。然后使用python编程语言中的librosa包读取wav格式的音频。通过使用python自带的librosa包来分析音频，下采样得到的音频数据48000Hz的采样率遵循librosa包的默认采样率，这样音频的采样率就变成了22050Hz。可以在librosa 文档中查看有关如何获取 Mel 频谱图的文档
+
+### 构建模型
+
+让我们使用 Python 和 Google Colab 制作一个系统，该系统可以使用卷积神经网络从 Mel Spectrogram 中识别来自 COVID-19 的感染者和非感染者的咳嗽声。
+
+详细见 https://blog.csdn.net/woshicver/article/details/120387103
