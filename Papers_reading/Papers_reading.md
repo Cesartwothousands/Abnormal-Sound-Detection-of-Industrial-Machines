@@ -324,3 +324,75 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 让我们使用 Python 和 Google Colab 制作一个系统，该系统可以使用卷积神经网络从 Mel Spectrogram 中识别来自 COVID-19 的感染者和非感染者的咳嗽声。
 
 详细见 https://blog.csdn.net/woshicver/article/details/120387103
+
+## 12.卷积神经网络实战
+
+> [12] https://cloud.tencent.com/developer/article/1031245
+
+1. 输入层
+
+   一张完整的向量
+
+2. 卷积层
+
+   一个过滤器。
+
+   隐藏层的每个神经元并不是和上一个隐藏层所有的神经元都相连，而只是和上一个隐藏层某一小片相连。
+
+   输入层到隐藏层的这种映射叫做**特征映射（Feature map）**。kernel→feature map
+
+   **这就是卷积层的作用：给定一个过滤器，卷积层会扫描输入层来阐述一个特征映射。**
+
+3. 激活函数
+
+   Relu：负数为零，正数为一
+
+   激活函数有两个主要优点：
+
+   - 它们给网络引入了非线性。实际上，目前提到的运算都是线性的，像卷积、矩阵相乘和求和。如果我们没有非线性，那么最终我们会得到一个线性模型，不能完成分类任务。
+   - 它们通过防止出现梯度消失来提升训练进程。
+
+4. 池化层
+
+   修订特征映射现在来到池化层了。池化是一个下采样操作，能让特征映射降维。
+
+   最普通的池化操作是Max-pooling。它选取一个小窗口，一般是2x2 ，以stride（步幅）为2在修订特征映射上滑动，每一步都取最大值。
+
+   Max-pooling有很多优点：
+
+   - 减小了特征映射的尺寸，减少了训练参数数目，从而控制过度拟合。
+   - **获取最重要特征来压缩特征映射。**
+   - 对于输入图片的变形、失真和平移具有网络不变性，输入小的失真不会改变池化的输出，因为我们是取最大值。
+
+5. 全连接层
+
+   卷积神经网络也有一层全连接层，就是我们在经典全连接网络中看到的那种。它一般在网络的末尾，最后一层池化层已经扁平化为一个矢量，和输出层全连接。而输出层是预测矢量，尺寸和类别数目相同。
+
+   ![Overview of CNN](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\Overview of CNN.png)
+
+   全连接层起着**分类**的作用，而前面那些层都是在**提取特征**。
+
+   全连接层收到卷积、修订和池化的压缩产物后，整合它们来实施分类。
+
+   除为了分类，添加一层全连接层也是一种学习这些特征非线性组合的方法。从卷积层和池化层来的大部分特征可能已经能够完成分类，但是整合这些特征后效果会更好。
+
+   把全连接层看作是添加到网络的一种附加提取。
+
+我们一般会设置2到3个全连接层，这样在实施分类前就可以学习非线性特征组合。
+
+关于这点可以引用Andrej Karpathy的话：
+
+> 最普通的卷积神经网络架构形式是包含好几层卷积-函数激活层的，池化层紧随其后，这种结构不断重复直到图片已经完全融合成小尺寸。在某个阶段，转化到全连接层也是很正常的事情。最后一层全连接层持有输出，如类别值。
+
+## 13.可视化和可解释的CNN
+
+> Zeiler, M. D., & Fergus, R. (2014). *Visualizing and Understanding Convolutional Networks. Lecture Notes in Computer Science, 818–833.* doi:10.1007/978-3-319-10590-1_53
+
+### Why former research succeed 
+
+- the availability of much larger training sets, with millions of labeled examples; 
+- powerful GPU implementations, making the training of very large models practical and
+- better model regularization strategies, such as Dropout (Hinton et al., 2012).
+
+### revealing which parts of the scene are important for classification.
+
