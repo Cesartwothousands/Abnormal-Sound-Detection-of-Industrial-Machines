@@ -386,7 +386,7 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 
 ## 13.可视化和可解释的CNN
 
-> Zeiler, M. D., & Fergus, R. (2014). *Visualizing and Understanding Convolutional Networks. Lecture Notes in Computer Science, 818–833.* doi:10.1007/978-3-319-10590-1_53
+> [13] Zeiler, M. D., & Fergus, R. (2014). *Visualizing and Understanding Convolutional Networks. Lecture Notes in Computer Science, 818–833.* doi:10.1007/978-3-319-10590-1_53
 
 ### Why former research succeed 
 
@@ -395,4 +395,12 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 - better model regularization strategies, such as Dropout (Hinton et al., 2012).
 
 ### revealing which parts of the scene are important for classification.
+
+## 14. **钨极气体保护电弧焊** CNN 多分类
+
+> [14] Ren W, Wen G, Xu B, et al. A Novel Convolutional Neural Network Based on Time–Frequency Spectrogram of Arc Sound and Its Application on GTAW Penetration Classification[J]. IEEE Transactions on Industrial Informatics, 2020, 17(2): 809-819.
+
+## 15.咳嗽分类
+
+> [15] Nguyen D S, Dang K T. COVID-19 Detection Through Smartphone-recorded Coughs Using Artificial Intelligence: An Analysis of Applicability for Pre-screening COVID-19 Patients in Vietnam[C]//2021 IEEE International Conference on Industrial Engineering and Engineering Management (IEEM). IEEE, 2021: 1392-1396.
 
