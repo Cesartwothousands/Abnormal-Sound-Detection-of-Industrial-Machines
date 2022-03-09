@@ -28,7 +28,8 @@ def savegraph(path, filepath):
 
     plt.show()
     f.clear()
+    plt.close()
 
 
-graph(r'00000000.wav')
-savegraph(r'00000009.wav', r'F:\毕业论文\Pictures\梅尔频谱图')
+# graph(r'00000000.wav')
+# savegraph(r'00000009.wav', r'F:\毕业论文\Pictures\梅尔频谱图')
