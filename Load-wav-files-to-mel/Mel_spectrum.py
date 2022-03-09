@@ -22,4 +22,5 @@ def mel(path):
 
     return logmelspec
 
-# mel(r'00000000.wav')
+#a = mel(r'00000000.wav')
+#print(type(a))
