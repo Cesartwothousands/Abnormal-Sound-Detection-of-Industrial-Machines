@@ -12,7 +12,7 @@ from Pre_Data import *
 time_start = time.time()  # time = 0
 ################################################################
 
-for i in range(1100,1106):
+for i in range(17800,18020):
     path = r'F:\毕业论文\Dataset\-6_dB_'
     picpath = r'F:\毕业论文\Pictures\梅尔频谱图\-6_dB_'
     print( i+1 , '次')

@@ -18,7 +18,7 @@ def savegraph(path, filepath):
     librosa.display.specshow(mel(path), sr=16000, y_axis='mel', x_axis='time')
     plt.colorbar(format='%+2.0f dB')
 
-    path = path[50:-4]
+    path = path[-12:-4]
     p = path
     p = p.rjust(8, '0')
     #    path = path.replace('.wav', '')
@@ -36,3 +36,4 @@ def savegraph(path, filepath):
 
 # graph(r'00000000.wav')
 # savegraph(r'00000009.wav', r'F:\毕业论文\Pictures\梅尔频谱图')
+# savegraph('F:\\毕业论文\\Dataset\\-6_dB_slider\\slider\\id_00\\abnormal\\\\00000001.wav','F:\\毕业论文\\Pictures\\梅尔频谱图\\-6_dB_slider\\0\\abnormal')

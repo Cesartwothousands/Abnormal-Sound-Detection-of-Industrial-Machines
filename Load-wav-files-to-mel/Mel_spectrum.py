@@ -24,3 +24,4 @@ def mel(path):
 
 #a = mel(r'00000000.wav')
 #print(type(a))
+# mel('F:\\毕业论文\\Dataset\\-6_dB_slider\\slider\\id_00\\abnormal\\\\00000001.wav')

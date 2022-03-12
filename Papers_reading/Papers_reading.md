@@ -404,3 +404,32 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 
 > [15] Nguyen D S, Dang K T. COVID-19 Detection Through Smartphone-recorded Coughs Using Artificial Intelligence: An Analysis of Applicability for Pre-screening COVID-19 Patients in Vietnam[C]//2021 IEEE International Conference on Industrial Engineering and Engineering Management (IEEM). IEEE, 2021: 1392-1396.
 
+## 16.小土堆Pytorch入门
+
+> [16] https://www.bilibili.com/video/BV1hE411t7RN?spm_id_from=333.999.0.0
+
+0. Pytorch配置
+
+   1. anaconda
+
+   2. 显卡驱动 
+   3.  
+
+1. Pycharm & Jupyter
+
+2. 两个重要的函数
+
+   1. Package函数 
+
+      dir() 打开
+
+      help() 说明书
+
+      dir(pytorch) :   1,2,3,4
+
+      dir(pytorch.3)  :    a,b,c,d
+
+      help(pytorch.3.a)   :What will a do
+
+      
+
