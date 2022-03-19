@@ -1,10 +1,13 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 import torch
+from torch.utils.data import Dataset
+from PIL import Image
 
-print(torch.cuda.is_available())
+#class MyData(Dataset):
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+#    def __init__(self):
+
+#    def __getitem__(self, idx):
+
+
+img_path = r"00000000.png"
+img = Image.open(img_path)
