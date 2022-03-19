@@ -431,5 +431,17 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 
       help(pytorch.3.a)   :What will a do
 
+3. 数据加载
+
+   1. Dataset
+
+      提供一种方式去获取数据及其label
+
+   2. Dataloader
+
+      为后面的网络提供不同的数据形式
+
       
+
+         
 
