@@ -443,7 +443,11 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 
       告诉我们总共有多少的数据
 
+4. Tensorboard
+
+   1. ​	查找 Terminal:          tensorboard --logdir=logs
+
+   2. 在log中删除记录
+
       
-      
-         
 
