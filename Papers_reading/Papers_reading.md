@@ -404,7 +404,7 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 
 > [15] Nguyen D S, Dang K T. COVID-19 Detection Through Smartphone-recorded Coughs Using Artificial Intelligence: An Analysis of Applicability for Pre-screening COVID-19 Patients in Vietnam[C]//2021 IEEE International Conference on Industrial Engineering and Engineering Management (IEEM). IEEE, 2021: 1392-1396.
 
-## 16.小土堆Pytorch入门
+## 16.Pytorch入门
 
 > [16] https://www.bilibili.com/video/BV1hE411t7RN?spm_id_from=333.999.0.0
 
@@ -451,3 +451,28 @@ CLDNN网络的通用结构是输入层是时域相关的特征，连接几层CNN
 
       
 
+## 17. TFA综述
+
+> [17] Yang Y, Peng Z, Zhang W, et al. Parameterised time-frequency analysis methods and their engineering applications: A review of recent advances[J]. Mechanical Systems and Signal Processing, 2019, 119: 182-221.
+
+- Almost all classical TFAs are non-parameterised methods
+
+i) the conventional non-parameterised TFA
+
+ii) the state-of-art adaptive non-parameterised TFA
+
+iii) parameterised TFA. 
+
+- STFT
+
+![STFT](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\STFT.png)
+
+- CWT
+
+![CWT](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\CWT.png)
+
+- WVD
+
+![WVD](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\WVD.png)
+
+- 
