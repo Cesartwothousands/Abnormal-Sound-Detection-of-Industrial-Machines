@@ -475,4 +475,20 @@ iii) parameterised TFA.
 
 ![WVD](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\WVD.png)
 
-- 
+## 18.基于深度学习的音频场景分类研究 
+
+> [18]  乔高杰. 基于深度学习的音频场景分类研究[D]. 武汉邮电科学研究院, 2021.
+
+为了解决音频场景分类准确率低的问题，本文主要是单模型进行改进，研究工作从三个方面进行展开，分别是：以对数梅尔谱图为基础，通过改变滤波器的数量、使用不同通道的音频以及谐波冲击源分离(Harmonic Percussive Source Separation, HPSS)的增强方法来提取不同信息的音频特征；在卷积神经网络作为分类器的基础上，通过添加压缩激励(Squeeze Excitation，SE)模块将能够关注到卷积模块输出特征通道间的信息，并且利用压缩激励来提取不同频率间的信息；以经典的卷积神经网络结构 VGG(Visual Geometry Group)和 Inception 中的基本结构单元为基础，将1个 Inception 和 2 个 VGG 基本结构单元组成混合网络作为分类器。 
+
+1. 如何更好的提取音频特征：通过改变滤波器的数量、使用不同通道的音频以及谐波冲击源分离(Harmonic Percussive Source Separation, HPSS)的增强方法来提取不同信息的音频特征；
+2. 计算机听觉场景分析的主要研究内容包含音频场景分类(Acoustic Scene Clas-sification, ASC)和声音事件检测(Acoustic Event Detection, AED)[2]两个方面。
+3. 梅尔频谱图：
+4. ![image-20220403214727792](F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Papers_reading\.git\image-20220403214727792.png)
+   - 预加重
+   - 分帧
+   - 离散傅里叶变换
+   - 梅尔滤波器
+   - 利用离散余弦变换提取MFCC
+5. 
+
