@@ -22,14 +22,14 @@ plt.figure(figsize=(10, 4))
 #plt.colorbar(format='%+2.0f dB')
 plt.title('CWT')
 plt.tight_layout()
-plt.imshow(np.abs(w), aspect='auto',vmin=0, vmax=.2, cmap='turbo')
+plt.imshow(np.abs(Sxo), aspect='auto',vmin=0, vmax=.1, cmap='turbo')
 plt.show()
 
 plt.figure(figsize=(10, 4))
 #plt.colorbar(format='%+2.0f dB')
 plt.title('SST')
 plt.tight_layout()
-plt.imshow(np.abs(Tsxo), aspect='auto',vmin=0, vmax=.2, cmap='turbo')
+plt.imshow(np.abs(Twy), aspect='auto',vmin=0, vmax=.2, cmap='turbo')
 plt.show()
 
 def viz(x, Tx, Wx):
