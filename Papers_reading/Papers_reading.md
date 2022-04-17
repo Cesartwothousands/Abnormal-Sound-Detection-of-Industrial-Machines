@@ -580,3 +580,8 @@ FFD&)!C#*!集合经验模态 分 解)?*和 解 析 模 态 分 解
 
 > [22]邹锋. 同步挤压小波变换在地震信号高分辨率处理中的应用研究[D].成都信息工程大学,2018.
 
+## 23. ssqueezepy程序包
+
+> [23] https://github.com/OverLordGoldDragon/ssqueezepy
+
+​	
