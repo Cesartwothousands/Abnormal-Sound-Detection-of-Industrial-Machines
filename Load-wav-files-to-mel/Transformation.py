@@ -16,8 +16,8 @@ def timedomain(i):
     plt.subplots_adjust(wspace=1, hspace=0.5)
 #    plt.subplot(311)
     plt.plot(i)
-    plt.xlabel('sample')
-    plt.ylabel('amplitude')
+    plt.xlabel('Sample')
+    plt.ylabel('Amplitude')
     f = plt.gcf()
     f.savefig(os.path.join("F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Load-wav-files-to-mel",
                            "23Timedomain"))
