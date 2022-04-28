@@ -1,7 +1,7 @@
 clear
 tic
 
-path = 'pump.00.normal.00000000.wav';
+path = 'vavle.00.normal.00000023.wav';
 P(path);
 
 
@@ -14,7 +14,7 @@ function P(p)
     fs = 16000;
     N= length(y);
     
-    set(gcf,'position',[0.1,0.1,1000,800])
+    set(gcf,'position',[0.1,0.1,1000,400])
     % Time domain
     y1 = y;
     t = 0:10/(N-1):10;
@@ -27,7 +27,7 @@ function P(p)
     saveas(1,[name,'T'],'png')
     close(figure(1))
     
-    set(gcf,'position',[0.1,0.1,1000,800])
+    set(gcf,'position',[0.1,0.1,1000,400])
     % Frequency domain
     y2 = abs(fft(y,N));
     f1 = (0:N-1)*fs/N;
