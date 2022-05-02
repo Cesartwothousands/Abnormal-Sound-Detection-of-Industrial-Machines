@@ -18,7 +18,11 @@ root_path = r'F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Mo
 labels = {0: 'normal', 1: 'abnormal'}
 
 rate = 0.3
-batchsize = 1
+batchsize = 10
+classmode = 'binary'
+picsize = (1000,400)
+inputshape = (1000,400,3)
+
 # 构造ImageDataGenerator对象
 train_datagen = ImageDataGenerator(
     rescale=1. / 255,                   # 数据缩放，把像素点的值除以255，使之在0到1之间
@@ -39,18 +43,18 @@ val_datagen = ImageDataGenerator(
 # 对训练集进行数据增强
 train_generator = train_datagen.flow_from_directory(
     root_path+'/dataset',              # 目标数据的路径
-    target_size=(300, 300),            # 所有的图片将被调整的尺寸
+    target_size= picsize,            # 所有的图片将被调整的尺寸
     batch_size=batchsize,                     # 每批传入数据的大小
-    class_mode='categorical',          # 决定返回标签的类型。这里采用 2D one-hot 编码标签
+    class_mode= classmode,          # 决定返回标签的类型。这里采用 2D one-hot 编码标签
     subset='training',                 # 数据子集
     seed=None)                            # 可选随机种子
 
 # 对测试集进行数据增强
 val_generator = val_datagen.flow_from_directory(
     root_path+'/dataset',              # 目标数据的路径
-    target_size=(300, 300),            # 所有的图片将被调整的尺寸
+    target_size= picsize,            # 所有的图片将被调整的尺寸
     batch_size=batchsize,                     # 每批传入数据的大小
-    class_mode='categorical',          # 决定返回标签的类型。这里采用 2D one-hot 编码标签
+    class_mode= classmode,          # 决定返回标签的类型。这里采用 2D cone-hot 编码标签
     subset='validation',               # 数据子集
     seed=None)                            # 可选随机种子
 
@@ -64,7 +68,7 @@ model = Sequential()
 # input_shape=(300, 300, 3)表示输入图像的尺寸为300x300，且有3个颜色通道
 
 #1
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu', input_shape=(300, 300, 3)))
+model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu', input_shape= inputshape))
 # 池化层
 # 使用最大池化层，且最大池化的窗口为2
 model.add(MaxPooling2D(pool_size=2))
@@ -77,18 +81,30 @@ model.add(MaxPooling2D(pool_size=2))
 #4
 model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=2))
+#5
+model.add(Conv2D(filters=64, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+#6
+model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+#7
+model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+#8
+model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
 
 model.add(Flatten())  # 扁平化参数
 # 全连接层
 # 全连接层输出的空间维度为64
 # 激活函数采用relu
 model.add(Dense(64, activation='relu'))
+model.add(Dense(16, activation='relu'))
 # 全连接层
 # 全连接层输出的空间维度为6
 # 激活函数采用softmax
-model.add(Dense(6, activation='softmax'))
+model.add(Dense(1, activation='softmax'))
 # 完成架构搭建后，最后输出模型汇总
-model.summary()
 
 model.compile(loss='categorical_crossentropy',           # 损失函数使用交叉熵
                    optimizer='adam',                     # 设置优化器
@@ -97,18 +113,16 @@ model.compile(loss='categorical_crossentropy',           # 损失函数使用交
 ### train
 time_model = time.time() # 记录训练开始时间
 history_fit = model.fit(train_generator,                # 增强的数据集
-                        epochs=2,                      # 迭代总轮数，这里设置为50次，你可以在实验是增加epoch次数，提升准确率
-                        steps_per_epoch=37//batchsize,       # generator 产生的总步数（批次样本）
+                        epochs=50,                      # 迭代总轮数，这里设置为50次，你可以在实验是增加epoch次数，提升准确率
+                        steps_per_epoch=int(len(train_generator)//batchsize),       # generator 产生的总步数（批次样本）
                         validation_data=val_generator,  # 验证数据的生成器
-                        validation_steps=15//batchsize)       # 在停止前 generator 生成的总步数（样本批数）
-
-end = time.time() # 记录训练结束时间
+                        validation_steps=int(len(val_generator)//batchsize)         # 在停止前 generator 生成的总步数（样本批数）
+                        )
 
 ########################################################################
 time_end = time.time()
 minute = (time_end - time_model) // 60
 second = (time_end - time_model) % 60
-print('\nTime cost', minute, 'min ', second, ' sec')
-minute = (time_end - time_start) // 60
-second = (time_end - time_start) % 60
-print('\nTime cost', minute, 'min ', second, ' sec')
+print('\nModel Time cost', minute, 'min ', second, ' sec')
+
+# model.summary()
