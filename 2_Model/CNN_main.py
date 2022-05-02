@@ -14,7 +14,7 @@ from tensorflow.keras.optimizers import SGD
 
 time_start = time.time()  # time = 0
 
-root_path = r'F:\毕业论文\Industrial-Machine-Investigation-and-Inspection\Model'
+root_path = r'F:\毕业论文'
 labels = {0: 'normal', 1: 'abnormal'}
 
 rate = 0.3
@@ -42,7 +42,7 @@ val_datagen = ImageDataGenerator(
 
 # 对训练集进行数据增强
 train_generator = train_datagen.flow_from_directory(
-    root_path+'/dataset',              # 目标数据的路径
+    root_path+'\Model Data',              # 目标数据的路径
     target_size= picsize,            # 所有的图片将被调整的尺寸
     batch_size=batchsize,                     # 每批传入数据的大小
     class_mode= classmode,          # 决定返回标签的类型。这里采用 2D one-hot 编码标签
@@ -51,7 +51,7 @@ train_generator = train_datagen.flow_from_directory(
 
 # 对测试集进行数据增强
 val_generator = val_datagen.flow_from_directory(
-    root_path+'/dataset',              # 目标数据的路径
+    root_path+'\Model Data',              # 目标数据的路径
     target_size= picsize,            # 所有的图片将被调整的尺寸
     batch_size=batchsize,                     # 每批传入数据的大小
     class_mode= classmode,          # 决定返回标签的类型。这里采用 2D cone-hot 编码标签
@@ -81,18 +81,6 @@ model.add(MaxPooling2D(pool_size=2))
 #4
 model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=2))
-#5
-model.add(Conv2D(filters=64, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=2))
-#6
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=2))
-#7
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=2))
-#8
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=2))
 
 model.add(Flatten())  # 扁平化参数
 # 全连接层
@@ -113,7 +101,7 @@ model.compile(loss='categorical_crossentropy',           # 损失函数使用交
 ### train
 time_model = time.time() # 记录训练开始时间
 history_fit = model.fit(train_generator,                # 增强的数据集
-                        epochs=50,                      # 迭代总轮数，这里设置为50次，你可以在实验是增加epoch次数，提升准确率
+                        epochs=1,                      # 迭代总轮数，这里设置为50次，你可以在实验是增加epoch次数，提升准确率
                         steps_per_epoch=int(len(train_generator)//batchsize),       # generator 产生的总步数（批次样本）
                         validation_data=val_generator,  # 验证数据的生成器
                         validation_steps=int(len(val_generator)//batchsize)         # 在停止前 generator 生成的总步数（样本批数）
