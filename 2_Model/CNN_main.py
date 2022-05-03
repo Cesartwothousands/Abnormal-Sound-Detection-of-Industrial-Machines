@@ -94,8 +94,8 @@ model.add(Dense(16, activation='relu'))
 model.add(Dense(1, activation='softmax'))
 # 完成架构搭建后，最后输出模型汇总
 
-model.compile(loss='categorical_crossentropy',           # 损失函数使用交叉熵
-                   optimizer='adam',                     # 设置优化器
+model.compile(loss=tf.keras.losses.BinaryCrossentropy(),           # 损失函数使用交叉熵
+                   optimizer=tf.keras.optimizers.Adam(lr = 0.1),                     # 设置优化器
                    metrics=['accuracy'])                 # 设置评估指标为准确率
 
 ### train
@@ -107,10 +107,12 @@ history_fit = model.fit(train_generator,                # 增强的数据集
                         validation_steps=int(len(val_generator)//batchsize)         # 在停止前 generator 生成的总步数（样本批数）
                         )
 
+model.summary()
+
 ########################################################################
 time_end = time.time()
 minute = (time_end - time_model) // 60
 second = (time_end - time_model) % 60
 print('\nModel Time cost', minute, 'min ', second, ' sec')
 
-# model.summary()
+
