@@ -20,8 +20,8 @@ labels = {0: 'normal', 1: 'abnormal'}
 rate = 0.3
 batchsize = 10
 classmode = 'binary'
-picsize = (1000,400)
-inputshape = (1000,400,3)
+picsize = (1000,800)
+inputshape = (1000,800,3)
 
 # 构造ImageDataGenerator对象
 train_datagen = ImageDataGenerator(
@@ -68,18 +68,21 @@ model = Sequential()
 # input_shape=(300, 300, 3)表示输入图像的尺寸为300x300，且有3个颜色通道
 
 #1
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu', input_shape= inputshape))
+model.add(Conv2D(filters=32, kernel_size=5, padding='same', activation='relu', input_shape= inputshape))
 # 池化层
 # 使用最大池化层，且最大池化的窗口为2
-model.add(MaxPooling2D(pool_size=2))
+model.add(MaxPooling2D(pool_size=3))
 #2
-model.add(Conv2D(filters=64, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=64, kernel_size=5, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=3))
 #3
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPooling2D(pool_size=2))
+model.add(Conv2D(filters=128, kernel_size=5, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=3))
 #4
-model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
+model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+#5
+model.add(Conv2D(filters=512, kernel_size=3, padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=2))
 
 model.add(Flatten())  # 扁平化参数
@@ -95,7 +98,7 @@ model.add(Dense(1, activation='softmax'))
 # 完成架构搭建后，最后输出模型汇总
 
 model.compile(loss=tf.keras.losses.BinaryCrossentropy(),           # 损失函数使用交叉熵
-                   optimizer=tf.keras.optimizers.Adam(lr = 0.1),                     # 设置优化器
+                   optimizer=tf.keras.optimizers.Adam(lr = 0.001),                     # 设置优化器
                    metrics=['accuracy'])                 # 设置评估指标为准确率
 
 ### train
