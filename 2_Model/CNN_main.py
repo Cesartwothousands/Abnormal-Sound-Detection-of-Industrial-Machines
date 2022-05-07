@@ -10,12 +10,13 @@ from tensorflow.keras.applications.imagenet_utils import preprocess_input
 from tensorflow.keras.models import model_from_json
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.optimizers import SGD
+
 # print(tf.__version__)
 
 time_start = time.time()  # time = 0
 
 root_path = r'F:\毕业论文'
-labels = {0: 'normal', 1: 'abnormal'}
+labels = {1: 'normal', 0: 'abnormal'}
 
 rate = 0.3
 batchsize = 10
@@ -94,17 +95,25 @@ model.add(Dense(16, activation='relu'))
 # 全连接层
 # 全连接层输出的空间维度为6
 # 激活函数采用softmax
-model.add(Dense(1, activation='softmax'))
+model.add(Dense(1, activation='sigmoid'))
 # 完成架构搭建后，最后输出模型汇总
+
+from sklearn.metrics import roc_auc_score
+
+def auroc(y_true, y_pred):
+    return tf.py_function(roc_auc_score, (y_true, y_pred), tf.double)
+
+# Build Model...
+
 
 model.compile(loss=tf.keras.losses.BinaryCrossentropy(),           # 损失函数使用交叉熵
                    optimizer=tf.keras.optimizers.Adam(lr = 0.001),                     # 设置优化器
-                   metrics=['accuracy'])                 # 设置评估指标为准确率
+                   metrics=['accuracy',auroc])                 # 设置评估指标为准确率
 
 ### train
 time_model = time.time() # 记录训练开始时间
 history_fit = model.fit(train_generator,                # 增强的数据集
-                        epochs=1,                      # 迭代总轮数，这里设置为50次，你可以在实验是增加epoch次数，提升准确率
+                        epochs=100,                      # 迭代总轮数，这里设置为50次，你可以在实验是增加epoch次数，提升准确率
                         steps_per_epoch=int(len(train_generator)//batchsize),       # generator 产生的总步数（批次样本）
                         validation_data=val_generator,  # 验证数据的生成器
                         validation_steps=int(len(val_generator)//batchsize)         # 在停止前 generator 生成的总步数（样本批数）
