@@ -19,7 +19,7 @@ root_path = r'F:\毕业论文'
 labels = {1: 'normal', 0: 'abnormal'}
 
 rate = 0.3
-batchsize = 10
+batchsize = 1
 classmode = 'binary'
 picsize = (1000,800)
 inputshape = (1000,800,3)
