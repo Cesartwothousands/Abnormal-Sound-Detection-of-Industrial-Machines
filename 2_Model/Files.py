@@ -1,6 +1,6 @@
 machines = ['fan','pump','slider','valve']
 kinds = ['normal', 'abnormal']
-rootpath = f'F:/毕业论文/Pictures/Mel/'
+rootpath = f'F:/Graduate_projrct/Pictures/Mel/'
 def name_path(name):
     paths = []
     for machine in machines:

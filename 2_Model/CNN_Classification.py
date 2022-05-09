@@ -30,16 +30,14 @@ def get_data(pic):
         class_num = labels.index(label)   # get the classification  (0 or a 1). 0=Abnormal 1=normal
         for img in os.listdir(path):      # iterate over each image per two of them
             try:
-                img_arr = cv2.imdecode(np.fromfile(os.path.join(path, img), dtype=np.uint8), -1)[..., ::-1]  # convert BGR to RGB format
-                img_arr = cv2.imdouble
-                resized_arr = cv2.resize(img_arr, (img_size+600, img_size))  # Reshaping images to preferred size
+                img_arr = cv2.imread(os.path.join(path, img))[..., ::-1]  # convert BGR to RGB format
+                resized_arr = cv2.resize(img_arr, (img_size, img_size+600))  # Reshaping images to preferred size
                 data.append([resized_arr, class_num])
-
-            except Exception as e:
+            except:
                 print('error in data')
     return np.array(data,dtype=object)
 
-train = get_data(r'F:\毕业论文\Pictures\Mel\fan')
+train = get_data(r'F:\Graduate_project\Pictures\Mel\fan')
 
 
 
