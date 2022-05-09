@@ -22,6 +22,16 @@ labels = ["abnormal", "normal"]
 img_size = 400
 rate = 0.2
 
+machines = ['fan','pump','slider','valve']
+kinds = ['normal', 'abnormal']
+rootpath = f'F:/Graduate_projrct/Pictures/Mel/'
+def name_path(name):
+    paths = []
+    for machine in machines:
+        paths.append(rootpath+f'{machine}/{name}')
+    return paths
+file_names = {'normal': name_path(kinds[0]),'abnormal': name_path(kinds[1])}
+
 def RaTe(num,rate):
     t = int(num * rate)
     R = []
