@@ -62,7 +62,7 @@ xlabel('时间 t/s');
 ylabel('幅度');
 grid on
 
-saveas(1,'41Time domain','png')
+%saveas(1,'41Time domain','png')
 %close(figure(1))
 
 
