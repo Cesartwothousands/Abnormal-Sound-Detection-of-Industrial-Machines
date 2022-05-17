@@ -10,7 +10,8 @@ t = 0:10/(N-1):10;
 set(gcf,'position',[0.1,0.1,800,500])
 [stft1,f1,t1] = stft(y,fs);
 stft1 =  abs(stft1);
-pcolor(t1,f1,stft1);shading interp
+f1 = log10(f1);
+pcolor(t1,abs(f1),stft1);shading interp
 axis([0,10,0,8000]);
 title('阀门样本信号时频谱图')
 xlabel('时间 t/s');
