@@ -14,7 +14,7 @@ Related work of my NUIST ungraduated thesis *Abnormal Sound Detection of Industr
 
 ## Background
 
-![The normal working state of the water pump in the real factory environment](4_README\pic1.png)
+![pic1](pic1.png)
 
 Pic1 shows the normal working state of the water pump in the real factory environment
 , manual anomaly detection will have problems such as high labor costs, inability to get real-time feedback, and subjective errors.
@@ -23,7 +23,7 @@ Pic1 shows the normal working state of the water pump in the real factory enviro
 
 Data from **MIMII Dataset**: Sound Dataset for Malfunctioning Industrial Machine Investigation and Inspection. Pic2 shows  time-domain and frequency-domain diagrams of valves, water pumps, fans and slide rails in normal working state.
 
-![pic2](4_README\pic2.png)
+![pic2](pic2.png)
 
 
 
